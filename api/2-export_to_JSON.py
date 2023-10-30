@@ -32,17 +32,7 @@ if __name__ == "__main__":
     req_rep1 = req_rep1.json()
     req_rep2 = req_rep2.json()
     # file name depends on id
-    filename1 = f"{sys.argv[1]}.csv"
     filename2 = f"{sys.argv[1]}.json"
-    with open(filename1, 'w', newline='') as csvfile:
-        # create a csv writer object
-        data_writer = csv.writer(csvfile, delimiter=",", quotechar='"',
-                                 quoting=csv.QUOTE_ALL)
-        # iterate through the first request only and use the value of some key
-        # and use the username of the second request for every iteration
-        for data in req_rep1:
-            data_writer.writerow([data["userId"], req_rep2["username"],
-                                 data["completed"], data["title"]])
     # create a dictionary having the key "userid" and
     # the value should be an  empty list
     user_data = {f'{req_rep2["id"]}': []}
@@ -61,6 +51,6 @@ if __name__ == "__main__":
             else:
                 new_dict[key] = data[key]
         new_dict["username"] = req_rep2["username"]
-        user_data.get('2').append(new_dict)
+        user_data.get(f"{sys.argv[1]}").append(new_dict)
     with open(filename2, 'w', encoding='utf-8') as jsonfile:
         json.dump(user_data, jsonfile)
