@@ -23,9 +23,10 @@ Second and N next lines display the title of completed tasks:
 TASK_TITLE (with 1 tabulation and 1 space before the TASK_TITLE)
 """
 if __name__ == "__main__":
+    import json
     import sys
     import urllib.request
-    import json
+
     """
     format the employees id with the url
     https://jsonplaceholder.typicode.com/users/{employees_id}
